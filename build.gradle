@@ -1,0 +1,49 @@
+
+
+apply plugin: 'java-library'
+apply plugin: 'jacoco'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    implementation 'com.google.guava:guava:23.0'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+/*
+The test report should be generated as soon as the tests have completed.
+If we generate the report at a later time, for instance by using build.finalizedBy jacocoTestReport,
+other steps may fail in the meantime, stopping the build without having created the report.
+*/
+test.finalizedBy jacocoTestReport
+
+/*
+Now let come to them, even more, sweeter part of the cake:- enforcing code coverage metrics. 
+What this means is that a threshold or rule is set for which a gradle task can be used to verify
+if code coverage metrics are met based on configured rules/threshold. The build fails if any of
+the configured rules are not met. JaCoCo only reports the first violated rule.
+*/
+jacocoTestCoverageVerification {
+     violationRules { 
+             rule { 
+                  limit { 
+                        minimum = 0.7 
+                  } 
+             } 
+     } 
+}
+
+/*
+When the jacocoTestCoverageVerification task is run, this rule will ensure that a code coverage 
+metric of 70% met to be able to pass the build. To run coverage verification during the build 
+(and fail when appropriate), you will need to add below again the build.gradle file
+
+check.dependsOn jacocoTestCoverageVerification
+
+Nice example: https://github.com/samaddico/spring-boot-samples/tree/master/spring-boot-gradle-jacoco
+*/

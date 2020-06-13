@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.eclemma.jacoco.capacitacion.pruebas.PalindromeTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-11T21:27:31" hostname="DESKTOP-95SD6QO" time="0.005">
+  <properties/>
+  <testcase name="whenEmptyString_thenAccept" classname="org.eclemma.jacoco.capacitacion.pruebas.PalindromeTestSuite" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
